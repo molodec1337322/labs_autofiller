@@ -11,7 +11,7 @@ def create_files(count, path, filename):
 
 def main():
 
-    files_count = 12
+    files_count = int(input("Введите необходимое количество файлов для создания: "))
 
     program_text_folder_path = os.path.join(os.getcwd(), "program_text")
     create_files(files_count, program_text_folder_path, "task{0}.txt")

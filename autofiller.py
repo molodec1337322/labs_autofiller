@@ -3,14 +3,6 @@ from docxtpl import InlineImage
 import os
 
 
-def create_files(count, path, filename):
-
-    for i in range(count):
-        if os.path.exists(os.path.join(path, filename.format(count))) is False:
-            with open(filename.format(count), 'tw') as f:
-                pass
-
-
 def read_data(counter, program_text_folder_path, tasks_text_folder_path):
 
     source_text_filename = "task{0}.txt"
@@ -54,18 +46,15 @@ def main():
 
 
     title_filename = "template_labs.docx"
-
-
     doc = DocxTemplate(title_filename)
-    counter = 1
 
+    counter = 1
     for i in range(12):
         doc.render(fill_context(doc, counter, program_text_folder_path,
                                 tasks_text_folder_path, screenshots_folder_path))
         counter += 1
 
     doc.save(new_filename)
-
 
 
 if __name__ == "__main__":

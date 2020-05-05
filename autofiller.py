@@ -5,14 +5,17 @@ import os
 
 def read_data(counter, program_text_folder_path, tasks_text_folder_path):
 
-    source_text_filename = "task{0}.txt"
-    source_program_text_filename = "task{0}.txt"
+    source_text_filename = "task{0}.txt".format(counter)
+    source_program_text_filename = "task{0}.txt".format(counter)
 
-    with open(os.path.join(tasks_text_folder_path, source_text_filename.format(counter)), 'r') as f:
+    with open(os.path.join(tasks_text_folder_path, source_text_filename), 'r') as f:
         text = f.read()
 
-    with open(os.path.join(program_text_folder_path, source_program_text_filename.format(counter)), 'r') as f:
+    with open(os.path.join(program_text_folder_path, source_program_text_filename), 'r') as f:
         program_text = f.read()
+
+    program_text = program_text.replace('<', '\"')
+    program_text = program_text.replace('\t', '    ')
 
     return text, program_text
 
@@ -47,15 +50,10 @@ def main():
     title_filename = "template_labs.docx"
     doc = DocxTemplate(title_filename)
 
-    counter = 1
     context = {}
     for i in range(12):
-        context.update(fill_context(doc, counter, program_text_folder_path,
+        context.update(fill_context(doc, i + 1, program_text_folder_path,
                         tasks_text_folder_path, screenshots_folder_path))
-        counter += 1
-
-    doc.render(context)
-    doc.save(new_filename)
 
 
 if __name__ == "__main__":

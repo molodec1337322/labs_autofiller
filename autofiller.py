@@ -8,10 +8,10 @@ def read_data(counter, program_text_folder_path, tasks_text_folder_path):
     source_text_filename = "task{0}.txt".format(counter)
     source_program_text_filename = "task{0}.txt".format(counter)
 
-    with open(os.path.join(tasks_text_folder_path, source_text_filename), 'r') as f:
+    with open(os.path.join(tasks_text_folder_path, source_text_filename), 'r', encoding="utf-8") as f:
         text = f.read()
 
-    with open(os.path.join(program_text_folder_path, source_program_text_filename), 'r') as f:
+    with open(os.path.join(program_text_folder_path, source_program_text_filename), 'r', encoding="utf-8") as f:
         program_text = f.read()
 
     program_text = program_text.replace('<', '\"')

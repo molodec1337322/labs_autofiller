@@ -16,6 +16,7 @@ def read_data(counter, program_text_folder_path, tasks_text_folder_path):
 
     program_text = program_text.replace('<', '\"')
     program_text = program_text.replace('\t', '    ')
+    program_text = program_text.replace('\n', ' ' * 74)  # 74 - кол-во пробелов необходимых для новой строки
 
     return text, program_text
 
@@ -54,6 +55,9 @@ def main():
     for i in range(12):
         context.update(fill_context(doc, i + 1, program_text_folder_path,
                         tasks_text_folder_path, screenshots_folder_path))
+
+    doc.render(context)
+    doc.save(new_filename)
 
 
 if __name__ == "__main__":
